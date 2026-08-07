@@ -1,22 +1,21 @@
-ADD THESE EXACT CALLBACK URLS
-============================
-
-GOOGLE CLOUD — Authorized redirect URI:
-https://verification-bot-production-942f.up.railway.app/auth/google/callback
-
-DISCORD DEVELOPER PORTAL — OAuth2 redirect:
-https://verification-bot-production-942f.up.railway.app/auth/discord/callback
-
-TEST LINKS
-==========
-Homepage:
-https://verification-bot-production-942f.up.railway.app/
-
-Health check:
-https://verification-bot-production-942f.up.railway.app/health
-
-Discord user verification:
-https://verification-bot-production-942f.up.railway.app/link/discord
-
-Creator YouTube connection:
-https://verification-bot-production-942f.up.railway.app/creator/start
+{
+  "name": "misfit-youtube-role-bot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Discord bot that links Discord users to YouTube accounts and syncs creator membership roles.",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "db:init": "node src/init-db.js"
+  },
+  "engines": {"node": ">=20"},
+  "dependencies": {
+    "discord.js": "^14.21.0",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "googleapis": "^154.0.0",
+    "pg": "^8.16.3"
+  }
+}

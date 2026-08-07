@@ -1,37 +1,36 @@
-CREATE TABLE IF NOT EXISTS discord_users (
-  discord_user_id TEXT PRIMARY KEY,
-  discord_username TEXT NOT NULL,
-  youtube_channel_id TEXT,
-  youtube_channel_name TEXT,
-  linked_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-);
+# Safetybot — YouTube Membership Role Bot
 
-CREATE TABLE IF NOT EXISTS creators (
-  id BIGSERIAL PRIMARY KEY,
-  discord_user_id TEXT NOT NULL,
-  youtube_channel_id TEXT NOT NULL UNIQUE,
-  youtube_channel_name TEXT NOT NULL,
-  access_token TEXT,
-  refresh_token TEXT NOT NULL,
-  token_expiry BIGINT,
-  connected_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-);
+A Railway-ready Discord bot that links a Discord user's connected YouTube account, lets creators authorize YouTube membership access, and maps membership levels to Discord roles.
 
-CREATE TABLE IF NOT EXISTS role_mappings (
-  id BIGSERIAL PRIMARY KEY,
-  creator_channel_id TEXT NOT NULL,
-  youtube_level_id TEXT NOT NULL,
-  youtube_level_name TEXT NOT NULL,
-  discord_role_id TEXT NOT NULL,
-  UNIQUE (creator_channel_id, youtube_level_id)
-);
+## Railway domain
 
-CREATE TABLE IF NOT EXISTS oauth_states (
-  state TEXT PRIMARY KEY,
-  provider TEXT NOT NULL,
-  discord_user_id TEXT,
-  expires_at TIMESTAMPTZ NOT NULL
-);
+`https://verification-bot-production-942f.up.railway.app`
 
-CREATE INDEX IF NOT EXISTS discord_users_youtube_idx
-  ON discord_users (youtube_channel_id);
+## Required Railway variables
+
+Copy the names from `.env.example` into Railway. Keep all real tokens and secrets in Railway only.
+
+You also need a Railway PostgreSQL service and must reference its `DATABASE_URL` from the bot service.
+
+## Callback URLs
+
+Google OAuth:
+`https://verification-bot-production-942f.up.railway.app/auth/google/callback`
+
+Discord OAuth:
+`https://verification-bot-production-942f.up.railway.app/auth/discord/callback`
+
+## Test
+
+Health check:
+`https://verification-bot-production-942f.up.railway.app/health`
+
+User linking:
+`https://verification-bot-production-942f.up.railway.app/link/discord`
+
+Creator authorization:
+`https://verification-bot-production-942f.up.railway.app/creator/start`
+
+## Important
+
+YouTube's `members.list` endpoint is restricted. Each membership-enabled creator must authorize their own channel, and Google/YouTube may need to approve the Cloud project for membership API access.
