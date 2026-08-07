@@ -1,23 +1,14 @@
 import 'dotenv/config';
 
 const required = [
-  'APP_BASE_URL',
-  'SESSION_SECRET',
-  'DISCORD_BOT_TOKEN',
-  'DISCORD_CLIENT_ID',
-  'DISCORD_CLIENT_SECRET',
-  'DISCORD_GUILD_ID',
-  'GOOGLE_CLIENT_ID',
-  'GOOGLE_CLIENT_SECRET',
-  'DATABASE_URL'
+  'APP_BASE_URL', 'SESSION_SECRET', 'DISCORD_BOT_TOKEN', 'DISCORD_CLIENT_ID',
+  'DISCORD_CLIENT_SECRET', 'DISCORD_GUILD_ID', 'GOOGLE_CLIENT_ID',
+  'GOOGLE_CLIENT_SECRET', 'DATABASE_URL'
 ];
-
 for (const key of required) {
   if (!process.env[key]) throw new Error(`Missing required environment variable: ${key}`);
 }
-
 const baseUrl = process.env.APP_BASE_URL.replace(/\/$/, '');
-
 export const config = {
   port: Number(process.env.PORT || 3000),
   baseUrl,
