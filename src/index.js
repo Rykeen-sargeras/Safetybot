@@ -4,6 +4,7 @@ import { db, ensureSchema } from './db.js';
 import { startDiscord } from './discord.js';
 import { syncAllCreators } from './sync.js';
 import { registerCreatorConnect } from './creator-connect.js';
+import { registerLegalRoutes } from './legal.js';
 
 let server, auditTimer;
 
@@ -11,6 +12,7 @@ async function boot(){
   await ensureSchema();
   console.log('Database schema ready.');
   registerCreatorConnect(app);
+  registerLegalRoutes(app);
   server=app.listen(config.port,'0.0.0.0',()=>console.log(`Web server listening on ${config.port}`));
   try{ await startDiscord(); }catch(e){ console.error('Discord startup failed:',e); }
 
