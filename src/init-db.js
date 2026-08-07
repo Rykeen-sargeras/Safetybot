@@ -1,6 +1,0 @@
-import fs from 'node:fs/promises';
-import { db } from './db.js';
-const sql = await fs.readFile(new URL('../sql/schema.sql', import.meta.url), 'utf8');
-await db.query(sql);
-console.log('Database initialized.');
-await db.end();
