@@ -1,0 +1,22 @@
+ADD THESE EXACT CALLBACK URLS
+============================
+
+GOOGLE CLOUD — Authorized redirect URI:
+https://verification-bot-production-942f.up.railway.app/auth/google/callback
+
+DISCORD DEVELOPER PORTAL — OAuth2 redirect:
+https://verification-bot-production-942f.up.railway.app/auth/discord/callback
+
+TEST LINKS
+==========
+Homepage:
+https://verification-bot-production-942f.up.railway.app/
+
+Health check:
+https://verification-bot-production-942f.up.railway.app/health
+
+Discord user verification:
+https://verification-bot-production-942f.up.railway.app/link/discord
+
+Creator YouTube connection:
+https://verification-bot-production-942f.up.railway.app/creator/start
